@@ -57,7 +57,7 @@ namespace _10_dars_CRUD.Services
         public Book GetExpensiveBook()
         {
             var expensiveBook = new Book();
-           
+
             foreach (var bookDb in books)
             {
                 if (expensiveBook.Price < bookDb.Price)
@@ -70,15 +70,38 @@ namespace _10_dars_CRUD.Services
         public Book GetMostPagedBook()
         {
             var mostpageBook = new Book();
-            foreach(var bookDb in books)
+            foreach (var bookDb in books)
             {
-                if(mostpageBook.PageNumber < bookDb.PageNumber)
+                if (mostpageBook.PageNumber < bookDb.PageNumber)
                 {
                     mostpageBook = bookDb;
                 }
             }
             return mostpageBook;
         }
-        
+        public List<Book> GetBooksByReaderName(string readerName)
+        {
+            var bookloverReaderBooks = new List<Book>();
+            foreach (var bookFromDb in books)
+            {
+                if (bookFromDb.ReadersName == readerName)
+                {
+                    bookloverReaderBooks.Add(bookFromDb);
+                }
+            }
+            return bookloverReaderBooks;
+        }
+        public List<Book> GetBooksAuthorName(string authorName)
+        {
+            var authorBooks = new List<Book>();
+            foreach(var bookFromDb in books)
+            {
+                if(bookFromDb.AuthorsName== authorName)
+                {
+                    authorBooks.Add(bookFromDb);
+                }
+            }
+            return authorBooks;
+        }
     }
 }
